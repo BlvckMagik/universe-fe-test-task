@@ -18,7 +18,7 @@ const PDFViewers: React.FC<PDFViewersProps> = ({ pdfUrl }) => {
 
   return (
     <div className="lg:max-w-[800px] min-w-[300px] w-full lg:w-auto lg:max-h-[700px] lg:grow aspect-[0.83] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-      <Worker workerUrl="/pdf.worker.min.js">
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
         <Viewer
           fileUrl={pdfUrl || "/dummy.pdf"}
           plugins={[defaultLayoutPluginInstance]}
