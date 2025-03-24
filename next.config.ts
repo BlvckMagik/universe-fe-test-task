@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/pdf.worker.min.js",
+        destination: "/api/pdf-worker",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
