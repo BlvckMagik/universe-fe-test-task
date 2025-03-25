@@ -16,7 +16,7 @@ const ConversionHistory: React.FC<ConversionHistoryProps> = ({
   }
 
   return (
-    <div className="w-full max-w-[450px] rounded-xl bg-gray-100 p-6">
+    <div className="w-full max-w-[450px] max-h-[300px] overflow-y-auto rounded-xl bg-gray-100 p-6">
       <h2 className="mb-4 text-lg font-semibold">Conversion History</h2>
       <ul className="space-y-2">
         {history.map((item) => (
