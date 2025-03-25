@@ -22,7 +22,7 @@ const PDFViewers: React.FC<PDFViewersProps> = ({ pdfUrl }) => {
         <Viewer
           fileUrl={pdfUrl || "/dummy.pdf"}
           plugins={[defaultLayoutPluginInstance]}
-          defaultScale={SpecialZoomLevel.PageFit}
+          defaultScale={SpecialZoomLevel.PageWidth}
           theme={{
             theme: "light",
           }}
