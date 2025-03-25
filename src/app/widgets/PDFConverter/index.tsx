@@ -8,12 +8,12 @@ import {
   Description,
   Textarea,
 } from "@headlessui/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FormStatus } from "@/types/form";
 import { createPDF } from "@/app/actions/create-pdf";
 
 interface PDFConverterProps {
-  onPdfGenerated: (url: string | null) => void;
+  onPdfGenerated: (blob: Blob | null) => void;
 }
 
 const PDFConverter: React.FC<PDFConverterProps> = ({ onPdfGenerated }) => {
@@ -22,6 +22,25 @@ const PDFConverter: React.FC<PDFConverterProps> = ({ onPdfGenerated }) => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (formStatus === "success") {
+      timeoutId = setTimeout(() => {
+        setFormStatus("idle");
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+      }, 3000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [formStatus]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,11 +68,11 @@ const PDFConverter: React.FC<PDFConverterProps> = ({ onPdfGenerated }) => {
         const blob = new Blob([response.data], { type: "application/pdf" });
         const pdfObjectUrl = URL.createObjectURL(blob);
         setPdfUrl(pdfObjectUrl);
-        onPdfGenerated(pdfObjectUrl);
+        onPdfGenerated(blob);
       } else {
         const pdfObjectUrl = URL.createObjectURL(response.data);
         setPdfUrl(pdfObjectUrl);
-        onPdfGenerated(pdfObjectUrl);
+        onPdfGenerated(response.data);
       }
 
       setFormStatus("success");
