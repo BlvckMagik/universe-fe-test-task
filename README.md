@@ -1,4 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF Converter App
+
+Web application for converting text to PDF documents with conversion history storage capability.
+
+## Project Structure
+
+## Core Modules
+
+### PDFConverter
+
+- Text input form component
+- Text to PDF conversion handling
+- Conversion status and error display
+
+### PDFViewer
+
+- PDF document display
+- Zoom and navigation support
+- react-pdf-viewer integration
+
+### ConversionHistory
+
+- Converted documents list display
+- Document opening and deletion capabilities
+- Creation date sorting
+
+### useConversionHistory
+
+- Conversion history management
+- Document storage in IndexedDB
+- Automatic resource cleanup
+
+## Technologies
+
+- Next.js
+- React
+- TypeScript
+- TailwindCSS
+- IndexedDB
+- react-pdf-viewer
+- Jest for testing
+
+## Features
+
+- Responsive design
+- PDF storage in IndexedDB
+- Automatic temporary URL cleanup
+- Large document support
+- Full-featured PDF viewer with additional functions
 
 ## Getting Started
 
